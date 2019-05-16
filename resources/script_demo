@@ -1,0 +1,39 @@
+0::start::.*?hợp đồng.*?điện::1
+1::speak::Để phục vụ bạn chi tiết hơn, bạn vui lòng cung cấp thêm thông tin cá nhân.::36
+2::choose::không::không|không.*?được|.{1,6}không.{1,6}::6::có::.*?(có|được|đồng ý|nhất trí).*?::3
+3::speak::Mời bạn đọc số điện thoại::4
+4::input::<NUMBER>::16
+5::speak::Cảm ơn bạn::6
+6::speak::Bạn cần chúng tôi tư vấn gì về hợp đồng mua bán điện? Thay đổi thông tin, Gia hạn, Chấm dứt, Tạm ngừng sử dụng điện, hay Cấp lại?::7
+7::choose_req::thay đổi thông tin::.*?(thay|đổi|thay đổi).*?::24::gia hạn::.*?gia hạn.*?::24::chấm dứt::.*?chấm dứt.*?::24::tạm ngưng sử dụng điện::.*?tạm (ngừng|ngưng|dừng).*?::24::cấp lại::.*?cấp lại.*?::24
+8::solve::<SHOW_MEET_TIME>::::35::::35
+9::solve::<SAVE_DATE>::::33::::33
+10::solve::<SAVE_TIME>::::8::::8
+11::speak::Về việc Tạm ngừng sử dụng điện .. blah .. blah::13
+12::speak::Về việc cấp lại hợp đồng điện .. blah .. blah::13
+13::speak::Bạn cần mình tư vấn điều gì nữa không?::14
+14::choose::không::không|không.*?được|.{1,6}không.{1,6}::15::có::.*?(có|được|đồng ý|nhất trí).*?::6
+15::speak::Cảm ơn bạn, chúc bạn một ngày tốt lành!::-1
+16::solve::<SAVE_NUMBER_PHONE>::<EXIST>::18::<NEW>::19
+17::speak::ha ha::15
+18::speak::Thông tin của bạn: <ATT>::5
+19::speak::Bạn có sẵn sàng cung cấp địa chỉ/ khu vực bạn sinh sống không?::20
+20::choose::không::không|không.*?được|.{1,6}không.{1,6}::6::có::.*?(có|được|đồng ý|nhất trí).*?::21
+21::speak::Mời bạn đọc địa chỉ::22
+22::input::<ADDRESS>::23
+23::solve::<SAVE_ADDRESS>::<OK>::5
+24::speak::Bạn muốn chúng tôi tư vấn thủ tục nào của vấn đề <ATT>?::25
+25::speak::Kênh tiếp nhận, Hồ sơ, Chi phí hay Thời gian giải quyết?::26
+26::choose_req::kênh tiếp nhận::.*?kênh tiếp nhận.*?::38::hồ sơ::.*?hồ sơ.*?::38::chi phí::.*?chi phí.*?::38::thời gian::.*?thời gian.*?::38
+27::solve::<SHOW_REQUEST>::<EXIST>::28::<NEW>::28
+28::speak::<ATT>::29
+29::speak::Bạn có muốn đặt lịch hẹn không?::30
+30::choose::không::không|không.*?được|.{1,6}không.{1,6}::13::có::.*?(có|được|đồng ý|nhất trí).*?::31
+31::speak::Mời bạn chọn ngày::32
+32::input::<DATE>::9
+33::speak::Mời bạn chọn giờ::34
+34::input::<TIME>::10
+35::speak::Bạn đặt lịch hẹn vào <ATT>::13
+36::speak::Trong trường hợp không cần thiết, bạn có thể lựa chọn Không để nhận được thông tin tổng quan.::37
+37::speak::Bạn có sẵn sàng cung cấp số điện thoại không?::2
+38::solve::<CHECK_INFO>::<EXITS>::27::<NEW>::27
